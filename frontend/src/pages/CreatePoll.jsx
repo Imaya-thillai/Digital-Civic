@@ -92,7 +92,7 @@ const CreatePoll = () => {
       // Filter out empty options
       const filledOptions = options.filter(opt => opt.trim() !== "");
 
-      await axios.post("http://localhost:4000/api/polls", {
+      await axios.post("https://civic-backend-3opn.onrender.com/api/polls", {
         title: question,
         description,
         options: filledOptions,

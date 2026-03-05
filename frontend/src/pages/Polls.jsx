@@ -22,7 +22,7 @@ const Polls = () => {
   const fetchPolls = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:4000/api/polls", {
+      const res = await axios.get("https://civic-backend-3opn.onrender.com/api/polls", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -37,7 +37,7 @@ const Polls = () => {
 
   const fetchUserVotes = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/votes", {
+      const res = await axios.get("https://civic-backend-3opn.onrender.com/api/votes", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

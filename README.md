@@ -68,7 +68,7 @@ Start the backend server:-
 npm start
 
 The server will run on:
-👉 http://localhost:4000
+👉 https://civic-backend-3opn.onrender.com/api
 
 🌐 3. Frontend Setup (Client)
 
