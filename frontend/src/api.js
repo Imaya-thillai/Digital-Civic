@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE = import.meta.env.VITE_API_URL || 'https://civic-backend-3opn.onrender.com/api'
+const BASE = import.meta.env.VITE_API_URL || 'https://digital-civic-1tji.onrender.com/api'
 
 const api = axios.create({
   baseURL: BASE,
