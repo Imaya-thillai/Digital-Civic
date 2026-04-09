@@ -18,14 +18,6 @@ const EyeIcon = () => (
     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
   </svg>
 );
-const GoogleIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24">
-    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-  </svg>
-);
 
 export default function Login() {
   const navigate = useNavigate();
@@ -55,36 +47,123 @@ export default function Login() {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        .lb{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#c8d8e4 0%,#dce8f0 40%,#b8cdd8 100%);padding:24px;font-family:'DM Sans',sans-serif}
-        .lc{width:100%;max-width:880px;background:#edf2f5;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,0.12);display:flex;overflow:hidden;min-height:500px}
-        .ll{flex:0 0 44%;background:linear-gradient(160deg,#e4edf4 0%,#d0dfe8 100%);display:flex;align-items:center;justify-content:center;padding:40px 32px}
-        .li{width:100%;max-width:280px}
-        .lr{flex:1;padding:52px;display:flex;flex-direction:column;justify-content:center}
-        .lw{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#1a2533;margin-bottom:4px}
-        .ls{font-size:13px;color:#7a8fa0;margin-bottom:32px}
-        .lh{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:#8b6c52;margin-bottom:24px}
-        .le{background:#fde8e8;color:#b91c1c;border-radius:10px;padding:10px 14px;font-size:13px;margin-bottom:16px}
-        .lf{display:flex;flex-direction:column;gap:14px}
-        .lfld{position:relative}
-        .lin{width:100%;padding:14px 48px 14px 20px;border:none;border-radius:50px;background:#d8e5ed;color:#1a2533;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:background .2s}
-        .lin::placeholder{color:#8fa5b4}
-        .lin:focus{background:#c8d8e2}
-        .lic{position:absolute;right:18px;top:50%;transform:translateY(-50%);color:#7a98a8;display:flex;align-items:center;pointer-events:none}
-        .licc{pointer-events:auto;cursor:pointer}
-        .lfg{text-align:right;font-size:12px;color:#5a7080;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;font-weight:500}
-        .lfg:hover{color:#1a2533}
-        .lbtn{width:100%;padding:14px;border-radius:50px;border:none;background:#4a6d7c;color:#fff;font-size:15px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;transition:background .2s,transform .1s}
-        .lbtn:hover{background:#3a5a6a;transform:translateY(-1px)}
-        .lbtn:disabled{opacity:.7;cursor:not-allowed;transform:none}
-        .ldiv{display:flex;align-items:center;gap:12px}
-        .ldivl{flex:1;height:1px;background:#c5d4dc}
-        .ldivt{font-size:11px;color:#8fa5b4;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-        .lgbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:11px;border-radius:50px;border:1.5px solid #c5d4dc;background:transparent;color:#4a6d7c;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .2s}
-        .lgbtn:hover{background:#e0eaf0}
-        .lfoot{text-align:center;font-size:13.5px;color:#5a7080;font-weight:500}
-        .lfoot a{color:#1a2533;font-weight:700;text-decoration:underline;text-underline-offset:2px}
-        @media(max-width:640px){.ll{display:none}.lr{padding:36px 24px}}
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .lb {
+          min-height: 100vh;
+          min-height: 100dvh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(135deg, #c8d8e4 0%, #dce8f0 40%, #b8cdd8 100%);
+          padding: 16px;
+          font-family: 'DM Sans', sans-serif;
+        }
+
+        .lc {
+          width: 100%;
+          max-width: 900px;
+          background: #edf2f5;
+          border-radius: 24px;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+          display: flex;
+          overflow: hidden;
+          min-height: 520px;
+        }
+
+        .ll {
+          flex: 0 0 42%;
+          background: linear-gradient(160deg, #e4edf4 0%, #d0dfe8 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 28px;
+        }
+        .li { width: 100%; max-width: 280px; }
+
+        .lr {
+          flex: 1;
+          padding: 52px 48px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .lw { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: #1a2533; margin-bottom: 4px; }
+        .ls { font-size: 13px; color: #7a8fa0; margin-bottom: 32px; line-height: 1.5; }
+        .lh { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: #8b6c52; margin-bottom: 24px; }
+        .le { background: #fde8e8; color: #b91c1c; border-radius: 10px; padding: 10px 14px; font-size: 13px; margin-bottom: 16px; }
+
+        .lf { display: flex; flex-direction: column; gap: 14px; }
+        .lfld { position: relative; }
+
+        .lin {
+          width: 100%;
+          padding: 14px 48px 14px 20px;
+          border: none;
+          border-radius: 50px;
+          background: #d8e5ed;
+          color: #1a2533;
+          font-size: 15px;
+          font-family: 'DM Sans', sans-serif;
+          outline: none;
+          transition: background 0.2s;
+          -webkit-appearance: none;
+        }
+        .lin::placeholder { color: #8fa5b4; }
+        .lin:focus { background: #c8d8e2; }
+
+        .lic { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #7a98a8; display: flex; align-items: center; pointer-events: none; }
+        .licc { pointer-events: auto; cursor: pointer; }
+
+        .lfg { text-align: right; font-size: 12px; color: #5a7080; cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+        .lfg:hover { color: #1a2533; }
+
+        .lbtn {
+          width: 100%;
+          padding: 15px;
+          border-radius: 50px;
+          border: none;
+          background: #4a6d7c;
+          color: #fff;
+          font-size: 15px;
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.1s;
+          letter-spacing: 0.02em;
+        }
+        .lbtn:hover { background: #3a5a6a; transform: translateY(-1px); }
+        .lbtn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+        .lfoot { text-align: center; font-size: 13.5px; color: #5a7080; font-weight: 500; }
+        .lfoot a { color: #1a2533; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+        /* Tablet */
+        @media (max-width: 768px) {
+          .ll { flex: 0 0 38%; padding: 28px 20px; }
+          .lr { padding: 40px 32px; }
+          .lw { font-size: 28px; }
+        }
+
+        /* Mobile — slide-up sheet style */
+        @media (max-width: 580px) {
+          .lb { padding: 0; align-items: flex-end; background: linear-gradient(160deg, #c8d8e4 0%, #b8cdd8 100%); }
+          .lc { border-radius: 22px 22px 0 0; min-height: unset; box-shadow: 0 -8px 40px rgba(0,0,0,0.15); }
+          .ll { display: none; }
+          .lr { padding: 36px 24px 44px; }
+          .lw { font-size: 26px; }
+          .ls { margin-bottom: 24px; }
+          .lh { font-size: 20px; margin-bottom: 18px; }
+          .lin { font-size: 16px; padding: 15px 48px 15px 20px; }
+          .lbtn { padding: 16px; font-size: 16px; }
+          .lf { gap: 12px; }
+        }
+
+        @media (max-width: 360px) {
+          .lr { padding: 28px 18px 36px; }
+          .lw { font-size: 22px; }
+        }
       `}</style>
 
       <div className="lb">
@@ -142,31 +221,25 @@ export default function Login() {
           </div>
 
           <div className="lr">
-            <h1 className="lw">Welcome Back !</h1>
+            <h1 className="lw">Welcome Back!</h1>
             <p className="ls">Log in to make your voice heard in your community.</p>
             <div className="lh">Log-in</div>
             {error && <div className="le">{error}</div>}
             <div className="lf">
               <div className="lfld">
-                <input className="lin" type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleChange} required />
+                <input className="lin" type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleChange} required autoComplete="email" />
                 <span className="lic"><MailIcon /></span>
               </div>
               <div className="lfld">
-                <input className="lin" type={showPassword ? "text" : "password"} name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-                <span className={`lic licc`} onClick={() => setShowPassword(!showPassword)}>
+                <input className="lin" type={showPassword ? "text" : "password"} name="password" placeholder="Password" value={formData.password} onChange={handleChange} required autoComplete="current-password" />
+                <span className="lic licc" onClick={() => setShowPassword(!showPassword)}>
                   {showPassword ? <EyeIcon /> : <EyeOffIcon />}
                 </span>
               </div>
-              <div className="lfg">Forgot Password ?</div>
+              <div className="lfg">Forgot Password?</div>
               <button className="lbtn" onClick={handleSubmit} disabled={loading}>
-                {loading ? "Logging in..." : "Log-in"}
+                {loading ? "Logging in…" : "Log-in"}
               </button>
-              <div className="ldiv">
-                <div className="ldivl" />
-                <span className="ldivt">Alternative Login Method</span>
-                <div className="ldivl" />
-              </div>
-              <button className="lgbtn"><GoogleIcon /> Google</button>
               <p className="lfoot">New to CIVIX? <Link to="/register">Create an Account</Link></p>
             </div>
           </div>

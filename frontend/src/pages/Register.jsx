@@ -7,11 +7,9 @@ import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
-// Fix default Leaflet marker icon
 const DefaultIcon = L.icon({ iconUrl: icon, shadowUrl: iconShadow, iconSize: [25, 41], iconAnchor: [12, 41] });
 L.Marker.prototype.options.icon = DefaultIcon;
 
-// *** MUST be outside Register component — React Compiler requirement ***
 function LocationMarker({ setFormData, setMapCoords }) {
   useMapEvents({
     click: async (e) => {
@@ -30,7 +28,6 @@ function LocationMarker({ setFormData, setMapCoords }) {
   return null;
 }
 
-// Icons
 const UserIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
@@ -60,14 +57,6 @@ const MapPinIcon = () => (
 const ChevronIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="6 9 12 15 18 9"/>
-  </svg>
-);
-const GoogleIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24">
-    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
   </svg>
 );
 
@@ -108,39 +97,144 @@ const Register = () => {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        .rb{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#c8d8e4 0%,#dce8f0 40%,#b8cdd8 100%);padding:24px;font-family:'DM Sans',sans-serif}
-        .rc{width:100%;max-width:960px;background:#f0f4f7;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,0.12);display:flex;overflow:hidden;min-height:600px}
-        .rl{flex:0 0 42%;background:linear-gradient(160deg,#e8eff4 0%,#d4e2ea 100%);display:flex;align-items:center;justify-content:center;padding:40px 32px}
-        .rli{width:100%;max-width:260px}
-        .rr{flex:1;padding:36px 44px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
-        .rh{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#1a2533;margin-bottom:4px}
-        .rs{font-size:13px;color:#7a8fa0;margin-bottom:24px}
-        .re{background:#fde8e8;color:#b91c1c;border-radius:10px;padding:10px 14px;font-size:13px;margin-bottom:14px}
-        .rf{display:flex;flex-direction:column;gap:11px}
-        .rrow{display:flex;gap:11px}
-        .rfld{position:relative;flex:1}
-        .rin{width:100%;padding:13px 44px 13px 18px;border:none;border-radius:50px;background:#dde7ed;color:#1a2533;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:background .2s;appearance:none;-webkit-appearance:none}
-        .rin::placeholder{color:#8fa5b4}
-        .rin:focus{background:#cfdbe4}
-        .ric{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:#8fa5b4;display:flex;align-items:center;pointer-events:none}
-        .ricc{pointer-events:auto;cursor:pointer}
-        .rsel{width:100%;padding:13px 44px 13px 18px;border:none;border-radius:50px;background:#dde7ed;color:#8fa5b4;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;appearance:none;-webkit-appearance:none;cursor:pointer;transition:background .2s}
-        .rsel.hv{color:#1a2533}
-        .rsel:focus{background:#cfdbe4}
-        .rsw{position:relative}
-        .rsc{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:#8fa5b4;pointer-events:none;display:flex;align-items:center}
-        .rmw{border-radius:16px;overflow:hidden;height:140px;box-shadow:0 2px 10px rgba(0,0,0,0.08)}
-        .rbtn{width:100%;padding:13px;border-radius:50px;border:none;background:#4a6d7c;color:#fff;font-size:15px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;transition:background .2s,transform .1s}
-        .rbtn:hover{background:#3a5a6a;transform:translateY(-1px)}
-        .rdiv{display:flex;align-items:center;gap:12px}
-        .rdivl{flex:1;height:1px;background:#c5d4dc}
-        .rdivt{font-size:11px;color:#8fa5b4;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-        .rgbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:10px;border-radius:50px;border:1.5px solid #c5d4dc;background:transparent;color:#4a6d7c;font-size:14px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .2s}
-        .rgbtn:hover{background:#e8f0f5}
-        .rfoot{text-align:center;font-size:13.5px;color:#5a7080;font-weight:500}
-        .rfoot a{color:#1a2533;font-weight:700;text-decoration:underline;text-underline-offset:2px}
-        @media(max-width:680px){.rl{display:none}.rr{padding:32px 24px}.rrow{flex-direction:column}}
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .rb {
+          min-height: 100vh;
+          min-height: 100dvh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(135deg, #c8d8e4 0%, #dce8f0 40%, #b8cdd8 100%);
+          padding: 16px;
+          font-family: 'DM Sans', sans-serif;
+        }
+
+        .rc {
+          width: 100%;
+          max-width: 980px;
+          background: #f0f4f7;
+          border-radius: 24px;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+          display: flex;
+          overflow: hidden;
+        }
+
+        .rl {
+          flex: 0 0 40%;
+          background: linear-gradient(160deg, #e8eff4 0%, #d4e2ea 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 28px;
+        }
+        .rli { width: 100%; max-width: 260px; }
+
+        .rr {
+          flex: 1;
+          padding: 36px 44px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          overflow-y: auto;
+          max-height: 100vh;
+        }
+
+        .rh { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: #1a2533; margin-bottom: 4px; }
+        .rs { font-size: 13px; color: #7a8fa0; margin-bottom: 22px; line-height: 1.5; }
+        .re { background: #fde8e8; color: #b91c1c; border-radius: 10px; padding: 10px 14px; font-size: 13px; margin-bottom: 14px; }
+
+        .rf { display: flex; flex-direction: column; gap: 11px; }
+        .rrow { display: flex; gap: 11px; }
+        .rfld { position: relative; flex: 1; }
+
+        .rin {
+          width: 100%;
+          padding: 13px 44px 13px 18px;
+          border: none;
+          border-radius: 50px;
+          background: #dde7ed;
+          color: #1a2533;
+          font-size: 14px;
+          font-family: 'DM Sans', sans-serif;
+          outline: none;
+          transition: background 0.2s;
+          appearance: none;
+          -webkit-appearance: none;
+        }
+        .rin::placeholder { color: #8fa5b4; }
+        .rin:focus { background: #cfdbe4; }
+
+        .ric { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #8fa5b4; display: flex; align-items: center; pointer-events: none; }
+        .ricc { pointer-events: auto; cursor: pointer; }
+
+        .rsw { position: relative; }
+        .rsel {
+          width: 100%;
+          padding: 13px 44px 13px 18px;
+          border: none;
+          border-radius: 50px;
+          background: #dde7ed;
+          color: #8fa5b4;
+          font-size: 14px;
+          font-family: 'DM Sans', sans-serif;
+          outline: none;
+          appearance: none;
+          -webkit-appearance: none;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .rsel.hv { color: #1a2533; }
+        .rsel:focus { background: #cfdbe4; }
+        .rsc { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #8fa5b4; pointer-events: none; display: flex; align-items: center; }
+
+        .rmw { border-radius: 16px; overflow: hidden; height: 150px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+
+        .rbtn {
+          width: 100%;
+          padding: 14px;
+          border-radius: 50px;
+          border: none;
+          background: #4a6d7c;
+          color: #fff;
+          font-size: 15px;
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.1s;
+          letter-spacing: 0.02em;
+        }
+        .rbtn:hover { background: #3a5a6a; transform: translateY(-1px); }
+
+        .rfoot { text-align: center; font-size: 13.5px; color: #5a7080; font-weight: 500; }
+        .rfoot a { color: #1a2533; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
+        /* Tablet */
+        @media (max-width: 820px) {
+          .rl { flex: 0 0 36%; padding: 28px 18px; }
+          .rr { padding: 28px 28px; }
+          .rh { font-size: 26px; }
+        }
+
+        /* Mobile — slide-up sheet, stack password fields */
+        @media (max-width: 620px) {
+          .rb { padding: 0; align-items: flex-end; background: linear-gradient(160deg, #c8d8e4 0%, #b8cdd8 100%); }
+          .rc { border-radius: 22px 22px 0 0; box-shadow: 0 -8px 40px rgba(0,0,0,0.15); }
+          .rl { display: none; }
+          .rr { padding: 32px 20px 44px; max-height: 92vh; overflow-y: auto; }
+          .rrow { flex-direction: column; gap: 11px; }
+          .rh { font-size: 24px; }
+          .rin { font-size: 16px; padding: 14px 44px 14px 18px; }
+          .rsel { font-size: 16px; }
+          .rbtn { padding: 16px; font-size: 16px; }
+          .rmw { height: 130px; }
+          .rf { gap: 10px; }
+        }
+
+        @media (max-width: 360px) {
+          .rr { padding: 26px 16px 40px; }
+          .rh { font-size: 22px; }
+        }
       `}</style>
 
       <div className="rb">
@@ -204,30 +298,30 @@ const Register = () => {
           {/* RIGHT — form */}
           <div className="rr">
             <h1 className="rh">Sign-Up</h1>
-            <p className="rs">Create Your Civix Account to Join With Us</p>
+            <p className="rs">Create your CIVIX account to join the community.</p>
             {error && <div className="re">{error}</div>}
 
             <div className="rf">
               <div className="rfld">
-                <input className="rin" type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
+                <input className="rin" type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required autoComplete="name" />
                 <span className="ric"><UserIcon /></span>
               </div>
 
               <div className="rfld">
-                <input className="rin" type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleChange} required />
+                <input className="rin" type="email" name="email" placeholder="Email ID" value={formData.email} onChange={handleChange} required autoComplete="email" />
                 <span className="ric"><MailIcon /></span>
               </div>
 
               <div className="rrow">
                 <div className="rfld">
-                  <input className="rin" type={showPassword ? "text" : "password"} name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-                  <span className={`ric ricc`} onClick={() => setShowPassword(!showPassword)}>
+                  <input className="rin" type={showPassword ? "text" : "password"} name="password" placeholder="Password" value={formData.password} onChange={handleChange} required autoComplete="new-password" />
+                  <span className="ric ricc" onClick={() => setShowPassword(!showPassword)}>
                     {showPassword ? <EyeIcon /> : <EyeOffIcon />}
                   </span>
                 </div>
                 <div className="rfld">
-                  <input className="rin" type={showConfirm ? "text" : "password"} name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />
-                  <span className={`ric ricc`} onClick={() => setShowConfirm(!showConfirm)}>
+                  <input className="rin" type={showConfirm ? "text" : "password"} name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required autoComplete="new-password" />
+                  <span className="ric ricc" onClick={() => setShowConfirm(!showConfirm)}>
                     {showConfirm ? <EyeIcon /> : <EyeOffIcon />}
                   </span>
                 </div>
@@ -257,15 +351,7 @@ const Register = () => {
 
               <button className="rbtn" onClick={handleSubmit}>Sign-Up</button>
 
-              <div className="rdiv">
-                <div className="rdivl" />
-                <span className="rdivt">Alternative Sign-up Method</span>
-                <div className="rdivl" />
-              </div>
-
-              <button className="rgbtn"><GoogleIcon /> Google</button>
-
-              <p className="rfoot">Already have an account <Link to="/login">Log-in</Link></p>
+              <p className="rfoot">Already have an account? <Link to="/login">Log-in</Link></p>
             </div>
           </div>
         </div>
