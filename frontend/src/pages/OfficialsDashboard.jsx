@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import { isOfficial, getCurrentUser } from '../utils/roleUtils';
 import '../styles/dashboard.css';
+import '../styles/responsive.css';
 
 export default function OfficialsDashboard() {
     const navigate = useNavigate();

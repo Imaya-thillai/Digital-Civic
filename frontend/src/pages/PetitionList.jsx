@@ -5,6 +5,7 @@ import api from "../api";
 import { getCurrentUser, isOfficial } from "../utils/roleUtils";
 import LogoutButton from "../components/LogoutButton";
 import "../styles/dashboard.css"; // Reuse dashboard styles for layout
+import "../styles/responsive.css";
 
 export default function PetitionList() {
   const navigate = useNavigate();

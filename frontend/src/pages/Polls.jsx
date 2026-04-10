@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getCurrentUser, isOfficial } from "../utils/roleUtils";
 import "../styles/dashboard.css";
+import "../styles/responsive.css";
 
 const Polls = () => {
   const [polls, setPolls] = useState([]);

@@ -6,6 +6,7 @@ import BarChart from '../components/BarChart';
 import { isOfficial, getCurrentUser } from '../utils/roleUtils';
 import { downloadCSV, formatReportsForExport, generateReportFilename } from '../utils/exportUtils';
 import '../styles/dashboard.css';
+import '../styles/responsive.css';
 
 export default function ReportsDashboard() {
     const navigate = useNavigate();

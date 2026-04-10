@@ -1,5 +1,5 @@
-.auth-root{display:flex; min-height:100vh; align-items:stretch;}
-.left-panel{
+.auth-root{display:flex; flex-direction:column; min-height:100vh; min-height:100dvh; align-items:stretch;}
+.left-panel.auth-show-md{
   flex:1;
   background-size:cover;
   background-position:center;
@@ -37,12 +37,12 @@
   align-items:center;
   justify-content:center;
   padding:40px;
-  min-width:480px;
+  min-width:unset;
 }
 
 /* Auth card */
 .auth-card{
-  width:480px;
+  width:100%; max-width:480px;
   background:#fff;
   border-radius:12px;
   padding:18px;
@@ -78,4 +78,25 @@
   .left-panel{height:320px}
   .right-panel{padding:20px}
   .auth-card{width:100%}
+}
+
+/* ── Mobile-first responsive for auth pages ── */
+.left-panel {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .auth-root { flex-direction: row; }
+  .left-panel { display: block; }
+  .right-panel { padding: 40px; }
+  .auth-card { width: 480px; max-width: 480px; }
+}
+
+@media (max-width: 639px) {
+  .right-panel { padding: 24px 16px; min-width: unset; }
+  .auth-card { padding: 16px; }
+  .auth-heading h2 { font-size: 24px; }
+  .brand { font-size: 48px; }
+  .title { font-size: 22px; }
+  .left-overlay { padding: 32px; }
 }
